@@ -1,0 +1,98 @@
+int dis_img2(char path[50],int x=0,int y=0)
+{
+int borderx1,borderx2,bordery1,bordery2;
+borderx1=x-10;
+bordery1=y-10;
+fstream file;
+int count=0;
+char ch;
+file.open(path, ios ::in | ios::binary );
+  file.get(ch);
+  int i=x,j=y	;
+   while( !file.eof() )
+   {
+
+   if(ch=='%')
+     { if(i>count)
+	count=i;
+      j++;
+      i=x;
+      file.get(ch);
+      continue;
+     }
+    putpixel(i,j,(int)(ch));
+    file.get( ch );
+    i++;
+   }
+file.close();
+
+bordery2=j+10;
+borderx2=count;
+setcolor(RED);
+setlinestyle(0,0,3);
+rectangle(borderx1,bordery1,borderx2,bordery2);
+setlinestyle(0,0,1);
+setcolor(WHITE);
+settextstyle(3,0,2);
+outtextxy(borderx1,bordery2+20,"IS THIS THE IMAGE YOU WANT TO POST ?");
+rectangle(100,bordery2+60,200,bordery2+80);
+rectangle(300,bordery2+60,400,bordery2+80);
+settextstyle(0,0,1);
+setcolor(WHITE);
+outtextxy(130,bordery2+65,"YES");
+outtextxy(330,bordery2+65,"NO");
+initmouse();
+restrictmouse(0,0,640,480);
+movemouseptr(0,0);
+showmouse();
+changecursor(cursorhc);
+int opt=1;
+while(1)
+{
+   getmousepos(&button, &x, &y );
+
+   if(x>=100 && x<=200 && y>=bordery2+60 && y<=bordery2+80 || x>=300 && x<=400 && y>=bordery2+60 && y<=bordery2+80)
+      changecursor(cursorhand);
+   else
+     changecursor(cursorhc);
+
+     if(x>=100 && x<=200 && y>=bordery2+60 && y<=bordery2+80)
+       {
+	setcolor(GREEN);
+	outtextxy(130,bordery2+65,"YES");
+	}
+    else
+       {setcolor(WHITE);
+	outtextxy(130,bordery2+65,"YES");
+	}
+    if(x>=300 && x<=400 && y>=bordery2+60 && y<=bordery2+80)
+       {
+	setcolor(RED);
+	outtextxy(330,bordery2+65,"NO");
+	}
+   else
+       {setcolor(WHITE);
+	outtextxy(330,bordery2+65,"NO");
+	}
+
+	showmouse();
+	if( button & 1 == 1 )
+	 {
+	if(x>=100 && x<=200 && y>=bordery2+60 && y<=bordery2+80)
+	  {cleardevice();
+	  opt=1;
+	  hidemouse();
+	  break;
+	  }
+	  if(x>=300 && x<=400 && y>=bordery2+60 && y<=bordery2+80)
+	   {opt=2;
+	   hidemouse();
+	   break;}
+	}
+ }//while
+ if(opt==2)
+   return 0;
+ else
+   return 1;
+
+}

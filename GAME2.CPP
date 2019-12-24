@@ -1,0 +1,1016 @@
+void draw_copter(int ,int );
+void game();
+int check_if_out(int ,int );
+void draw_copter(int ,int );
+int check_if_crossed_bar(int,int);
+int display_game_over();
+void display_user_details();
+void check_ur_luck();
+void start_graphics();
+void director();
+
+int colour_of_heli;
+int bar_height_upper[3];
+int by_how_much_increment=10;
+int kick_starter=0;
+int multiplier=0;
+int healer=0;
+
+//allows the compiler to switch between functions
+void director()
+{
+start_graphics();
+check_ur_luck();
+game();
+}
+int xpos[3]={640,790,940};
+int score=0;
+int diff_of_bar_height=100;
+
+//function to provide the simulation of a 'spin and win' game
+void check_ur_luck()
+{
+cleardevice();
+
+settextstyle(10,0,1);
+setcolor(WHITE);
+outtextxy(0,25,"LET\'S CHECK YOUR LUCK BEFORE THE GAME");
+
+
+setcolor(RED);
+setlinestyle(SOLID_LINE,0,3);
+rectangle(220,120,420,340);
+rectangle(245,180,395,260);
+rectangle(263,278,377,312);
+
+rectangle(20,360,200,400);
+rectangle(220,360,420,400);
+rectangle(440,360,620,400);
+
+setfillstyle(SOLID_FILL,YELLOW);
+bar(265,280,375,310);//start
+line(295,180,295,260);
+line(345,180,345,260);
+line(220,160,420,160);
+settextstyle(8,0,1);
+setcolor(WHITE);
+outtextxy(260,125,"SPIN 'N' WIN");
+
+
+setcolor(GREEN);
+settextstyle(0,0,2);
+char temp[3];
+temp[0]=1;temp[1]='\0';
+outtextxy(30,372,temp);
+outtextxy(50,372,temp);
+outtextxy(70,372,temp);
+setcolor(YELLOW);
+settextstyle(2,0,4);
+outtextxy(100,372,"- KICK STARTER");
+
+setcolor(MAGENTA);
+settextstyle(0,0,2);
+temp[0]=3;temp[1]='\0';
+outtextxy(230,372,temp);
+outtextxy(250,372,temp);
+outtextxy(270,372,temp);
+setcolor(YELLOW);
+settextstyle(2,0,4);
+outtextxy(300,372,"- HEALER");
+
+setcolor(BLUE);
+settextstyle(0,0,2);
+temp[0]=2;temp[1]='\0';
+outtextxy(450,372,temp);
+outtextxy(470,372,temp);
+outtextxy(490,372,temp);
+setcolor(YELLOW);
+settextstyle(2,0,4);
+outtextxy(520,372,"- MULTIPLIER");
+
+settextstyle(0,0,3);
+temp[0]=1;
+temp[1]='\0';
+setcolor(GREEN);
+outtextxy(260,210,temp);
+outtextxy(310,210,temp);
+outtextxy(360,210,temp);
+
+
+setcolor(BLACK);
+settextstyle(0,0,2);
+outtextxy(285,290,"START");
+initmouse();
+showmouse();
+changecursor(cursorhc);
+movemouseptr(0,0);
+int flag=0;
+while(flag==0)
+{  int button,x,y;
+   setlinestyle(SOLID_LINE,0,3);
+   getmousepos(&button, &x, &y );
+   if(x>=265 && x<=375 && y>=280 && y<=310)
+   {setcolor(GREEN);
+   rectangle(265,280,375,310);
+   changecursor(cursorhand);}
+   else
+   {setcolor(RED);
+   rectangle(265,280,375,310);
+   changecursor(cursorhc);}
+   showmouse();
+    if( button & 1 == 1 )
+	{//spin();
+	if(x>=265 && x<=375 && y>=280 && y<=310)
+	  {hidemouse();
+	  setcolor(GREEN);
+	  rectangle(265,280,375,310);
+	  flag=1;}
+	}
+
+
+}
+int j1=180,j2=180,j3=180;
+int num1=5,num2=5,num3=5;
+if(flag==1)
+ {
+ setcolor(WHITE);
+  int symbol_how_many_times1=random(3)+3;
+  int symbol_how_many_times2=random(3)+5;
+  int symbol_how_many_times3=random(3)+7;
+  char array0[5];
+  char array1[5];
+  char array2[5];
+  setfillstyle(SOLID_FILL,BLACK);
+  bar(240,175,400,265);
+  setcolor(RED);
+  line(295,180,295,260);
+  line(345,180,345,260);
+  rectangle(245,180,395,260);
+  array0[0]=rand()%3+1;
+  array0[1]='\0';
+  array1[0]=rand()%3+1;
+  array1[1]='\0';
+  array2[0]=rand()%3+1;
+  array2[1]='\0';
+  int i=0;
+  int count1=0,count2=0,count3=0;
+
+  for( ; i <=symbol_how_many_times3;i+=1)
+  {
+    for(j3=180;j3!=238;)
+     {
+     if(kbhit())
+	exit(0);
+     if(array0[0]==4)
+      array0[0]=1;
+
+     if(array1[0]==4)
+      array1[0]=1;
+
+     if(array2[0]==4)
+      array2[0]=1;
+
+
+
+     if(num1==5)
+     {
+     if(i<symbol_how_many_times1)
+     {
+       if(j1<240)
+	{
+	if(array0[0]==1)
+	  setcolor(GREEN);
+	else if(array0[0]==2)
+	  setcolor(BLUE);
+	else if(array0[0]==3)
+	  setcolor(MAGENTA);
+
+	outtextxy(260,j1,array0);
+	delay(6);
+	j1+=6;
+	}
+       else if(j1==240)
+	{
+	 j1=180;
+	if(array0[0]==1)
+	  setcolor(GREEN);
+	else if(array0[0]==2)
+	  setcolor(BLUE);
+	else if(array0[0]==3)
+	  setcolor(MAGENTA);
+	outtextxy(260,j1,array0);
+	delay(6);
+	}
+      if(j1<220)
+       {setcolor(RED);
+       line(245,j1+30,295,j1+30);
+       delay(4);}
+      if(j1>210)
+       {setcolor(RED);
+       line(245,j1-30,295,j1-30);
+       delay(4);}
+     }
+     else if(i==symbol_how_many_times1)
+     {
+       if(count1==0)
+	 {j1=180;count1=1;}
+       if(j1<210)                        //
+	 {
+	  if(array0[0]==1)
+	  setcolor(GREEN);
+	else if(array0[0]==2)
+	  setcolor(BLUE);
+	else if(array0[0]==3)
+	  setcolor(MAGENTA);
+	  outtextxy(260,j1,array0);
+	  delay(4);
+	  j1+=6;
+	 }
+	else if(j1==210)
+	{
+	  if(array0[0]==1)
+	   setcolor(GREEN);
+	  else if(array0[0]==2)
+	   setcolor(BLUE);
+	  else if(array0[0]==3)
+	   setcolor(MAGENTA);
+	  outtextxy(260,210,array0);
+	  sound(600);
+	  delay(200);
+	  nosound();
+	  num1=array0[0];
+	  j1=0;
+	}
+     }
+    }//if num1==5
+    if(num2==5)
+    {
+     if(i<symbol_how_many_times2)
+       {
+	if(j2<236)
+	{
+	if(array1[0]==1)
+	  setcolor(GREEN);
+	else if(array1[0]==2)
+	  setcolor(BLUE);
+	else if(array1[0]==3)
+	  setcolor(MAGENTA);
+	outtextxy(310,j2,array1);
+	delay(5);
+	j2+=4;
+	}
+       else if(j2==236)
+	 {
+	  j2=180;
+	  if(array1[0]==1)
+	   setcolor(GREEN);
+	  else if(array1[0]==2)
+	   setcolor(BLUE);
+	  else if(array1[0]==3)
+	   setcolor(MAGENTA);
+	  outtextxy(310,j2,array1);
+	  delay(6);
+	 }
+       if(j2<220)
+       {setcolor(RED);
+       line(295,j2+30,345,j2+30);
+       delay(5);}
+
+       if(j2>210)
+       {setcolor(RED);
+       line(295,j2-30,345,j2-30);
+       delay(5);}
+
+       }
+     else if(i==symbol_how_many_times2)
+       {
+       if(count2==0)
+	 {j2=180;count2=1;}
+       if(j2<212)
+	 {
+	  if(array1[0]==1)
+	   setcolor(GREEN);
+	  else if(array1[0]==2)
+	   setcolor(BLUE);
+	  else if(array1[0]==3)
+	    setcolor(MAGENTA);
+	  outtextxy(310,j2,array1);
+	  delay(6);
+	  j2+=4;
+	 }
+	else if(j2==212)
+	{
+	  if(array1[0]==1)
+	   setcolor(GREEN);
+	  else if(array1[0]==2)
+	   setcolor(BLUE);
+	  else if(array1[0]==3)
+	   setcolor(MAGENTA);
+	  outtextxy(310,210,array1);
+	  sound(600);
+	  delay(200);
+	  nosound();
+	  num2=array1[0];
+	  j2=0;
+	}
+     }// else if(i==symbol_how_many_times2)
+    }//if num2==5
+
+
+    if(num3==5)
+    {
+     if(i<symbol_how_many_times3)
+      {
+	if(j3<238)
+       {
+	if(array2[0]==1)
+	  setcolor(GREEN);
+	else if(array2[0]==2)
+	  setcolor(BLUE);
+	else if(array2[0]==3)
+	  setcolor(MAGENTA);
+	outtextxy(360,j3,array2);
+	delay(3);
+	j3+=2;
+       }
+       else if(j3==238)
+       {
+	j3=180;
+	if(array2[0]==1)
+	  setcolor(GREEN);
+	else if(array2[0]==2)
+	  setcolor(BLUE);
+	else if(array2[0]==3)
+	  setcolor(MAGENTA);
+	outtextxy(360,j2,array1);
+	delay(6);
+       }
+      if(j3<220)
+       {setcolor(RED);
+       line(345,j3+30,395,j3+30);
+       delay(3);
+       }
+       if(j3>210)
+       {setcolor(RED);
+       line(345,j3-30,395,j3-30);
+       delay(3);
+       }
+      }
+
+     else if(i==symbol_how_many_times3)
+       {
+       if(count3==0)
+	 {j3=180;count3=1;}
+       if(j3<210)
+	 {
+	  if(array2[0]==1)
+	   setcolor(GREEN);
+	  else if(array2[0]==2)
+	   setcolor(BLUE);
+	  else if(array2[0]==3)
+	   setcolor(MAGENTA);
+	  outtextxy(360,j3,array2);
+	  delay(2);
+	  j3+=2;
+	 }
+	else if(j3==210 )
+	{
+	  if(array2[0]==1)
+	   setcolor(GREEN);
+	  else if(array2[0]==2)
+	   setcolor(BLUE);
+	  else if(array2[0]==3)
+	   setcolor(MAGENTA);
+	  outtextxy(360,210,array2);//
+	  sound(600);
+	  delay(200);
+	  nosound();
+	  num3=array2[0];
+	  break;
+	}
+       }
+
+    }   //if num3==5
+
+      if(i<=symbol_how_many_times1 && num1==5)
+      {
+     setfillstyle(SOLID_FILL,BLACK);
+     bar(240,169,400,265);
+     setcolor(RED);
+     rectangle(245,180,395,260);
+     line(295,180,295,260);
+     line(345,180,345,260);
+      }
+     else if(i<=symbol_how_many_times2 && num2==5)
+      {
+      setfillstyle(SOLID_FILL,BLACK);
+     bar(290,169,400,265);
+     setcolor(RED);
+     rectangle(245,180,395,260);
+     line(295,180,295,260);
+     line(345,180,345,260);
+      }
+     else if(i<=symbol_how_many_times3)
+      {
+      setfillstyle(SOLID_FILL,BLACK);
+     bar(340,169,400,265);
+     setcolor(RED);
+     rectangle(245,180,395,260);
+     line(295,180,295,260);
+     line(345,180,345,260);
+      }
+      if(j1==234)
+	 array0[0]+=1;
+     if(j2==236)
+	 array1[0]+=1;
+
+      if(j3==238)
+	 array2[0]+=1;
+
+     }        //small for
+  }  //big for
+
+ }//if flag
+
+ delay(500);
+ cleardevice();
+ if(num1==1 && num2==1 &&  num3==1)
+  {
+  setcolor(15);
+  setlinestyle(SOLID_LINE,0,3);
+  rectangle(120,190,520,290);
+  rectangle(130,200,510,280);
+  setcolor(GREEN);
+  settextstyle(0,0,1);
+  outtextxy(200,220,"CONGRATS!! YOU HAVE WON :");
+  setcolor(5);
+  outtextxy(140,240,"\'KICK STARTER\'");
+  setcolor(GREEN);
+  outtextxy(250,240,": YOUR SCORE NOW STARTS FROM");
+  setcolor(5);
+  outtextxy(480,240,"200");
+   kick_starter=1;
+  }
+ else if(num1==2 && num2==2 &&  num3==2)
+ {
+  setcolor(15);
+  setlinestyle(SOLID_LINE,0,3);
+  rectangle(120,190,520,290);
+  rectangle(130,200,510,280);
+  setcolor(GREEN);
+  settextstyle(0,0,1);
+  outtextxy(200,220,"CONGRATS!! YOU HAVE WON :");
+  setcolor(5);
+  outtextxy(140,240,"\'MULTIPLIER  (x2)\'");
+  setcolor(GREEN);
+  outtextxy(280,240,": YOUR SCORE DOUBLES AT THE");
+  outtextxy(280,260,"  END OF THE GAME");
+  multiplier=1;
+ }
+ else if(num1==3 && num2==3 &&  num3==3)
+ {
+  setcolor(15);
+  setlinestyle(SOLID_LINE,0,3);
+  rectangle(120,190,520,290);
+  rectangle(130,200,510,280);
+  setcolor(GREEN);
+  settextstyle(0,0,1);
+  outtextxy(200,220,"CONGRATS!! YOU HAVE WON :");
+  setcolor(5);
+  outtextxy(140,240,"\'HEALER\'");
+  setcolor(GREEN);
+  outtextxy(200,240,": YOU GET 2 LIFE INSTEAD OF ONE AND");
+  outtextxy(200,260,"  YOUR SCORE RETAINS");
+  healer=1;
+ }
+ else
+ {
+  setcolor(15);
+  setlinestyle(SOLID_LINE,0,3);
+  rectangle(120,190,520,290);
+  rectangle(130,200,510,280);
+  setcolor(RED);
+  settextstyle(0,0,1);
+  outtextxy(280,230,"SORRY!!");
+  outtextxy(160,250,"YOU HAVE NOT WON ANY REWARDS..TRY NEXT TIME");
+  healer=0;
+  multiplier=0;
+  kick_starter=0;
+ }
+getch();
+}
+
+//provide the graphics for the begining of the game
+void start_graphics()
+{cleardevice();
+}
+
+//allows the user to play the copter  game
+void game()
+{
+if(kick_starter==1)
+  score=200;
+else if(healer==1 || healer==2);
+else
+  score=0;
+cleardevice();
+delay(500);
+colour_of_heli=random(14)+1;
+xpos[0]=640;
+xpos[1]=790;
+xpos[2]=940;
+int colour_of_bar=4;
+int no_of_bars=3;
+display_user_details();
+setcolor(RED);
+setlinestyle(SOLID_LINE,0,0);
+for(int i=0;i<3;i++)
+ {if(i==0)
+  bar_height_upper[i]=random(371)+10;
+  else
+  {int flag=0;
+   while(flag==0)
+   {
+    int temp=random(371)+10;
+      if(temp>bar_height_upper[i-1]-diff_of_bar_height && temp<bar_height_upper[i-1]+diff_of_bar_height)
+       { bar_height_upper[i]=temp;
+	 flag=1;}
+   }
+  }
+ }
+
+ int heli_ypos=240;
+ int heli_xpos=300;
+ int status=0;
+ getch();
+ while(status==0)
+ {
+ gotoxy(10,13);
+ cout<<score;
+ if(xpos[0]>170)
+ {
+  if(xpos[0]<205)
+  {
+  setfillstyle(SOLID_FILL,colour_of_bar);
+  bar(205,3,xpos[0]+30, bar_height_upper[0]);
+  bar(205,bar_height_upper[0]+100,xpos[0]+30,475);
+  }
+  else
+  {
+   setfillstyle(SOLID_FILL,colour_of_bar);
+   bar(xpos[0],3,xpos[0]+30, bar_height_upper[0]);
+   bar(xpos[0],bar_height_upper[0]+100,xpos[0]+30,475);
+  }
+ }
+ else
+ {no_of_bars++;
+ xpos[0]=640;
+ int flag=0;
+   while(flag==0)
+   {
+    int temp=random(371)+10;
+      if(temp>bar_height_upper[2]-diff_of_bar_height && temp<bar_height_upper[2]+diff_of_bar_height)
+       { bar_height_upper[0]=temp;
+	 flag=1;}
+   }
+ }
+ if(xpos[1]>170)
+ {
+  if(xpos[1]<205)
+  {
+  setfillstyle(SOLID_FILL,colour_of_bar);
+  bar(205,3,xpos[1]+30, bar_height_upper[1]);
+  bar(205,bar_height_upper[1]+100,xpos[1]+30,475);
+  }
+  else
+  {
+   setfillstyle(SOLID_FILL,colour_of_bar);
+   bar(xpos[1],3,xpos[1]+30, bar_height_upper[1]);
+   bar(xpos[1],bar_height_upper[1]+100,xpos[1]+30,475);
+  }
+ }
+ else
+ {no_of_bars++;
+ xpos[1]=640;
+ int flag=0;
+   while(flag==0)
+   {
+    int temp=random(371)+10;
+      if(temp>bar_height_upper[0]-diff_of_bar_height && temp<bar_height_upper[0]+diff_of_bar_height)
+       { bar_height_upper[1]=temp;
+	 flag=1;}
+   }
+ }
+ if(xpos[2]>170)
+ {
+  if(xpos[2]<205)
+  {
+  setfillstyle(SOLID_FILL,colour_of_bar);
+  bar(205,3,xpos[2]+30, bar_height_upper[2]);
+  bar(205,bar_height_upper[2]+100,xpos[2]+30,475);
+  }
+ else
+  {
+   setfillstyle(SOLID_FILL,colour_of_bar);
+   bar(xpos[2],3,xpos[2]+30, bar_height_upper[2]);
+   bar(xpos[2],bar_height_upper[2]+100,xpos[2]+30,475);
+  }
+ }
+ else
+ {no_of_bars++;
+  xpos[2]=640;
+ int flag=0;
+   while(flag==0)
+   {
+    int temp=random(371)+10;
+      if(temp>bar_height_upper[1]-diff_of_bar_height && temp<bar_height_upper[1]+diff_of_bar_height)
+       { bar_height_upper[2]=temp;
+	 flag=1;}
+   }
+ }
+  if(kbhit())
+  { nosound();
+    char ch=getch();
+    heli_ypos-=25;
+    draw_copter(heli_xpos,heli_ypos);
+    sound(200);
+  }
+  else
+  { nosound();
+    heli_ypos+=7;
+    draw_copter(heli_xpos,heli_ypos);
+  }
+
+  delay(20);
+  xpos[0]-=5;
+  xpos[1]-=5;
+  xpos[2]-=5;
+  status=check_if_out(heli_xpos,heli_ypos);
+  if(status==1)
+   {sound(100);
+   for(int i=0;i<20;i++)
+   { if(i<9)
+      setcolor(RED);
+     else if(i<15)
+       setcolor(LIGHTRED);
+     else
+       setcolor(YELLOW);
+   circle(heli_xpos-30,heli_ypos,i);
+   delay(20);}
+   }
+  int status2=check_if_crossed_bar(heli_xpos-60,heli_ypos);
+  if(multiplier==1)
+   by_how_much_increment=20;
+  if(status2==1)
+   score+=by_how_much_increment;
+  setfillstyle(SOLID_FILL,BLACK);
+  bar(202,0,640,480);
+ }
+ int decision;
+ if(status==1)
+   {decision=display_game_over();
+    }
+ if(decision==1)
+   { //profile
+   healer=0;
+   multiplier=0;
+   kick_starter=0;
+   profile2();   }
+ else
+  {status=0;
+  cleardevice();
+  if(healer==2)
+   healer=1;
+  game();}
+
+}
+//function to check if the copter is out.
+int check_if_out(int heli_xpos,int heli_ypos)
+{
+int xpos1=heli_xpos-60;
+int ypos1=heli_ypos-15;
+int xpos2=heli_xpos;
+int ypos2=heli_ypos+15;
+int flag=1;
+for(int i=xpos1;i<xpos2 && flag==1;i++)
+ for(int j=ypos1;j<ypos2 && flag==1;j++)
+ { for(int k=0;k<3 && flag==1;k++)
+    { if(j<0 || j>480)
+	flag=0;
+      if(getpixel(i,j)==colour_of_heli)                     //white 15
+      if((i>=xpos[k] && i<xpos[k]+30 && j>=0 && j<=bar_height_upper[k]) ||(i>=xpos[k] && i<=xpos[k]+30 && j>=bar_height_upper[k]+100 && j<=480) )
+       {flag=0;
+       break;}
+     }
+ }
+if(flag==0)
+ return 1;
+else
+ return 0;
+}
+//draws the copter ,taking a base point as its parameter.
+void draw_copter(int heli_xpos,int heli_ypos)
+{
+setfillstyle(SOLID_FILL,colour_of_heli);
+setcolor(colour_of_heli);
+int main_body_centre=heli_xpos-16;
+sector(main_body_centre,heli_ypos,0,359,16,10);
+bar(heli_xpos-60,heli_ypos-2,main_body_centre,heli_ypos+2);
+int tail[6]={heli_xpos-60,heli_ypos-15,heli_xpos-60,heli_ypos,heli_xpos-54,heli_ypos};
+fillpoly(3,tail);
+setlinestyle(SOLID_LINE,0,3);
+line(main_body_centre,heli_ypos,main_body_centre-10,heli_ypos+15);
+line(main_body_centre,heli_ypos,main_body_centre+10,heli_ypos+15);
+setlinestyle(SOLID_LINE,0,3);
+line(main_body_centre-15,heli_ypos+15,main_body_centre+15,heli_ypos+15);
+line(main_body_centre-17,heli_ypos+10,main_body_centre-15,heli_ypos+15);
+line(main_body_centre+15,heli_ypos+15,main_body_centre+17,heli_ypos+10);
+line(main_body_centre,heli_ypos-15,main_body_centre,heli_ypos);
+line(main_body_centre-15,heli_ypos-15,main_body_centre+15,heli_ypos-15);
+setfillstyle(SOLID_FILL,BLACK);
+sector(main_body_centre,heli_ypos,0,90,15,10);
+}
+
+//diplays the game over page for the user anmd allows him to go back to the game or quit from the game
+int display_game_over()
+{
+	cleardevice();
+	nosound();
+	if(healer==2);
+	else if(healer==1)
+	  {
+	   outtextxy(155,220,"YOU WILL BE REDIRECTED TO THE GAME..");
+	   delay(2000);
+	   healer++;
+	   game();
+	  }
+
+	setfillstyle(SOLID_FILL,WHITE);
+	setcolor(YELLOW);
+	rectangle(220,120,420,150);
+	settextstyle(0,0,1);
+	setcolor(GREEN);
+	outtextxy(235,130,"YOUR SCORE IS:");
+	gotoxy(49,10);
+	cout<<score;
+	if(score>current_user.return_highscore())
+	{
+	outtextxy(220,90,"NEW HIGHSCORE");
+	current_user.change_highscore(score);
+	fstream file;
+	strcpy(filename,per_filepath);
+	strcat(filename,"account.dat");
+	file.open(filename,ios::in | ios::out| ios::binary);
+	file.read((char*)&person,sizeof(person));
+	while(!file.eof())
+	 {
+	 if(person.return_userid()==current_user.return_userid())
+	  {
+	  file.seekp(file.tellg()-sizeof(person));
+	  file.write((char*)&current_user,sizeof(current_user));
+	  break;
+	  }
+	 file.read((char*)&person,sizeof(person));
+	 }
+	file.close();
+	}//if new highscore
+	setcolor(YELLOW);
+	rectangle(120,190,520,290);
+	rectangle(130,200,510,280);
+	rectangle(170,244,220,260);      //YES
+	rectangle(420,244,470,260);      //NO
+	settextstyle(0,0,1);
+	setcolor(WHITE);
+	outtextxy(155,220,"BOOOM!!GAME OVER!!WHAT DO YOU WANT TO DO??");
+	outtextxy(185,249,"EXIT");
+	outtextxy(427,249,"RETRY");
+	//sound(100);
+	delay(500);
+	int point=1;
+	while(1)
+	{
+	setlinestyle(SOLID_LINE,0,3);
+	setcolor(GREEN);
+	nosound();
+	char ch=getch();
+
+	if(ch=='a' || ch=='A')
+	   {setcolor(GREEN);
+	   rectangle(165,240,225,265);
+	   setcolor(BLACK);
+	   rectangle(415,240,475,265);
+	   point=1;
+	   sound(600);
+	   delay(50);}
+	if(ch=='d' || ch=='D')
+	   {setcolor(GREEN);
+	   rectangle(415,240,475,265);
+	   setcolor(BLACK);
+	   rectangle(165,240,225,265);
+	   point=0;
+	   sound(600);
+	   delay(50);}
+	if(ch=='s' || ch=='S')
+	   {sound(2000);  delay(50);
+	   break;       }
+	}
+	    nosound();
+	    if(point==1)
+	      return 1;
+	    else
+	     return 0;
+
+
+}
+//displays the textual information for the game
+void display_user_details()
+{
+setcolor(YELLOW);
+setlinestyle(SOLID_LINE,0,0);
+rectangle(0,0,200,365);
+line(0,50,200,50);
+settextstyle(0,0,3);
+setcolor(RED);
+outtextxy(60,17,"FLY");
+setlinestyle(SOLID_LINE,0,3);
+
+rectangle(5,215,195,360);
+settextstyle(0,0,2);
+setcolor(GREEN);
+outtextxy(60,280,"ZILLA");
+outtextxy(20,300,"PROUCTIONS");
+setcolor(RED);
+rectangle(5,55,195,110);
+rectangle(5,115,195,180);
+setlinestyle(0,0,1);
+//line(5,360,195,360);
+
+setlinestyle(0,0,3);
+line(5,255,195,255);
+//line(5,390,195,390);
+settextstyle(3,0,2);
+setcolor(GREEN);
+rectangle(5,185,195,210);
+
+setcolor(CYAN);
+outtextxy(35,60,"INSTRUCTION");
+//outtextxy(30,220,"HALL OF FAME");
+char temp[3];
+settextstyle(11,0,1);
+setcolor(YELLOW);
+outtextxy(10,90,"Move up: press any key.");
+
+temp[0]=1;
+temp[1]='\0';
+settextstyle(11,0,1);
+setcolor(GREEN);
+outtextxy(10,125,temp);
+setcolor(YELLOW);
+outtextxy(20,125,"KICK STARTER");
+
+ if(kick_starter==1)
+  {setfillstyle(SOLID_FILL,GREEN);
+  bar(148,122,176,132);
+  setcolor(BLACK);
+  settextstyle(11,0,1);
+  outtextxy(154,124,"ON");
+  }
+ else
+  {
+  setfillstyle(SOLID_FILL,RED);
+  bar(148,122,176,132);
+  setcolor(0);
+  settextstyle(11,0,1);
+  outtextxy(150,124,"OFF");
+  }
+
+temp[0]=2;
+temp[1]='\0';
+settextstyle(11,0,1);
+setcolor(BLUE);
+outtextxy(10,145,temp);
+setcolor(YELLOW);
+outtextxy(20,145,"MULTIPLIER");
+  if(multiplier==1)
+  {setfillstyle(SOLID_FILL,GREEN);
+  bar(148,142,176,152);
+  setcolor(BLACK);
+  settextstyle(11,0,1);
+  outtextxy(154,144,"ON");
+  }
+ else
+  {
+  setfillstyle(SOLID_FILL,RED);
+  bar(148,142,176,152);
+  setcolor(0);
+  settextstyle(11,0,1);
+  outtextxy(150,144,"OFF");
+  }
+
+temp[0]=3;
+temp[1]='\0';
+settextstyle(11,0,1);
+setcolor(MAGENTA);
+outtextxy(10,165,temp);
+setcolor(YELLOW);
+outtextxy(20,165,"HEALER");
+  if(healer==1)
+  {setfillstyle(SOLID_FILL,GREEN);
+  bar(148,162,176,172);
+  setcolor(BLACK);
+  settextstyle(11,0,1);
+  outtextxy(154,164,"ON");
+  }
+ else
+  {
+  setfillstyle(SOLID_FILL,RED);
+  bar(148,162,176,172);
+  setcolor(0);
+  settextstyle(11,0,1);
+  outtextxy(150,164,"OFF");
+  }
+setcolor(YELLOW);
+settextstyle(11,0,1);
+outtextxy( 10,195,"SCORE:");
+fstream file;
+strcpy(filename,per_filepath);
+strcat(filename,"account.dat");
+file.open(filename,ios::app | ios::binary);
+int no_of_users=(file.tellp()+1)/sizeof(person);
+file.close();
+int array_to_store_score[50][50];
+char names[50][50];
+strcpy(filename,per_filepath);
+strcat(filename,"account.dat");
+file.open(filename,ios::in | ios::binary);
+file.read((char*)&person,sizeof(person));
+int n=0;
+while(!file.eof())
+ {
+   array_to_store_score[0][n]=person.return_userid();
+  array_to_store_score[1][n]=person.return_highscore();
+  strcpy(names[n],person.name);
+  n++;
+  file.read((char*)&person,sizeof(person));
+ }
+file.close();
+for(int i=0;i<no_of_users-1;i++)
+   for(int j=0;j<no_of_users-i-1;j++)
+    {
+    if(array_to_store_score[1][j]<array_to_store_score[1][j+1])
+      {
+      int temp1=array_to_store_score[1][j];
+      array_to_store_score[1][j]=array_to_store_score[1][j+1];
+      array_to_store_score[1][j+1]=temp1;
+      int temp2=array_to_store_score[0][j];
+      array_to_store_score[0][j]=array_to_store_score[0][j+1];
+      array_to_store_score[0][j+1]=temp2;
+      char temp3[50];
+      strcpy(temp3,names[j]);
+      strcpy(names[j],names[j+1]);
+      strcpy(names[j+1],temp3);
+      }
+    }
+/*int g=275;
+int y=18;
+for(i=0;i<3 || i<no_of_users;i++)
+  {
+  if(i==0)
+   outtextxy(10,g,"1.");
+  else if(i==1)
+   outtextxy(10,g,"2.");
+  else if(i==2)
+   outtextxy(10,g,"3.");
+  outtextxy(30,g,names[i]);
+  g+=30;
+  gotoxy(17,y);
+  cout<<array_to_store_score[1][i];
+  y+=2;
+  }            */
+gotoxy(19,15);
+cout<<current_user.return_highscore();
+setcolor(WHITE);
+outtextxy(20,232,"YOUR HIGHSCORE:");   /*
+int your_position=0;
+ for(i=0;i<no_of_users;i++)
+ {
+ if(array_to_store_score[0][i]==current_user.return_userid())
+  your_position=i+1;
+ }
+gotoxy(2,24);
+cout<<your_position+1<<".";   */
+}//function
+
+int check_if_crossed_bar(int heli_xpos,int heli_ypos)
+{
+ int flag=0;
+ for(int i=0;i<3;i++)
+  {
+  if(heli_xpos==xpos[i]+30 && heli_ypos>bar_height_upper[i] && heli_ypos<bar_height_upper[i]+100)
+    flag=1;
+  }
+ if(flag==1)
+  return 1;
+ else
+   return 0;
+}

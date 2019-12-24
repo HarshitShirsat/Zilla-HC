@@ -1,0 +1,147 @@
+char temp[50];
+struct captcha
+{
+  char cap_name;
+  char cap_code[5];
+}actual;
+int count=0;
+char captcha[10];
+char temp_filename[20];
+char capt_name;
+
+int captchathing();
+int enter_captcha();
+
+//draws the randomly selected captcha image
+void LoadImg(char path[50],int x=0,int y=0)
+{
+fstream file;
+char ch;
+file.open(path, ios ::in | ios::binary );
+if(file)
+ {count++;
+  file.get(ch);
+  int i=x,j=y,l,b;
+   while( !file.eof() )
+   {
+     if(ch=='%')
+     {
+      j++;
+      i=x;
+      file.get(ch);
+      continue;
+     }
+    putpixel(i,j,(int)(ch));
+    file.get( ch );
+    i++;
+   }
+   rectangle(95,95,305,155);
+   rectangle(100,100,300,150);
+}
+else
+  {
+  //FILE NOT FOUND
+  captchathing();
+  }
+file.close();
+}
+
+
+//randomly selects the captcha code from 26 captcha images
+int captchathing()
+{
+ setlinestyle(SOLID_FILL,1,2);
+ randomize();
+ cleardevice();
+ setcolor(YELLOW);
+ settextstyle(2,0,6);
+ outtextxy(50,50,"CAPTCHA CODE:");
+ strcpy(temp,per_filename);
+ strcat(temp,"cap_img\\");
+ int length=strlen(temp);
+ temp[length]=97+random(26);
+ capt_name=temp[length];
+ temp[length+1]='.';
+ temp[length+2]='t';
+ temp[length+3]='x';
+ temp[length+4]='t';
+ temp[length+5]='\0';
+ setcolor(RED);
+ LoadImg(temp,100,100); //coordinates
+ int flag=enter_captcha();
+  return flag;
+}
+
+//allows the user to enter the captcha and verifies it with actual captcha code
+int  enter_captcha()
+{
+ setcolor(RED);
+ rectangle(110,325,500,365);
+ rectangle(115,330,495,360);
+ setcolor(YELLOW);
+ settextstyle(2,0,5);
+ outtextxy(120,336,"ENTER THE CAPTCHA CODE:");
+ gotoxy(39,22);
+ gets(captcha);
+ //obtaining the rgt value of the captcha code
+ strcpy(temp_filename,per_filename);
+ strcat(temp_filename,"captcha.dat");
+ fstream file;
+ int flag=0;
+ file.open(temp_filename,ios::in | ios::binary);
+ if(file)
+ {
+ file.read((char*)&actual,sizeof(actual));
+ actual.cap_code[5]='\0';
+ while(flag==0)
+ { if(capt_name==actual.cap_name)
+    {
+      if(strcmp(captcha,actual.cap_code)==0)
+	{
+	setcolor(GREEN);
+	setlinestyle(SOLID_LINE,1,3);
+	int x,y;
+	for(x=440,y=348;x<=445;x++,y++)
+	  {line(x,y,x+1,y+1);
+	   delay(5);}
+	for(x=445,y=353;x<=465;x++,y--)
+	  {line(x,y,x+1,y+1);
+	  delay(5);
+	  flag=1;
+	  }
+	}
+      else
+	{
+	settextstyle(8,0,2);
+	outtextxy(400,400,"WRONG CAPTCHA :-( ");
+	delay(1500);
+	}
+	if(count<=2 && flag==0)
+	  {settextstyle(8,0,2);
+	  outtextxy(400,420,"TRY AGAIN");
+	  delay(1000);
+	  captchathing();
+	  }
+	else if(count>2 && flag==0)
+	  {int flag2=dia_box(2);
+	   if(flag2==1)
+	     {file.close();
+	     return 0;}//retry
+	   else
+	     exit(0);
+	     }
+    }
+
+   file.read((char*)&actual,sizeof(actual));
+ }
+if(flag==1)
+   {file.close();
+   return 1;
+   }
+
+}
+else
+  cout<<"DATA NOT FOUND";
+file.close();
+return 3;
+}

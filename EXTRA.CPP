@@ -1,0 +1,67 @@
+/*
+cout<<"\n\n\n\n\n\n\t\t";
+cout<<"\n\t                           \\|||//";
+cout<<"\n\t     .-.________            (o o)             ________.-.";
+cout<<"\n\t----/ \\_)_______) +---------(_)----------+ (_______(_/ \\----";
+cout<<"\n\t   (    ()___)     |  Project Done By:   |    (___()    )";
+cout<<"\n\t        ()__)      |                     |     (__()";
+cout<<"\n\t----\\___()_)      |  CHANDAN & HARSHIT  |      (_()___/----";
+cout<<"\n\t                   +----------C++--------+";
+cout<<"\n\n\n\n\t\t\tPress Any Key to Proceed!";
+getch();
+
+
+clrscr();
+cout<<"\n\t\t\tDISCLAIMER";
+cout<<"\n\t\t\t-_-_-_-_-_";
+cout<<"\n\n  The ZILLA HC Is a service that offers free networking with no guarantees";
+cout<<"\n  for uptime or performance and reserves the right to terminate accounts";
+cout<<"\n  at any time for no specific reason. The Owners and operators of The zilla hc";
+cout<<"\n  do not verify the information posted on the website and assume no liability";
+cout<<"\n  for the accuracy of such information.";
+cout<<"\n  The zilla hc reserves the right to judge what is acceptable use of the website ";
+cout<<"\n  may be changed or deleted to ensure acceptable use without any liability";
+cout<<"\n  assumed for such actions.";
+cout<<"\n  By using this site your certify that:";
+cout<<"\n\4You are at least 18 years of age.";
+cout<<"\n\4You are using this site for personal reason and not for commercial gain.";
+cout<<"\n\4You are using this site only when permitted by law.";
+cout<<"\n  This release of liability shall be contrued briadly to provide";
+cout<<"\n  a release and waiver to the maximum extent permissible under applicable";
+cout<<"\n  law. I CERTIFY THAT I HAVE READ THIS DOCUMENT AND I FULLY UNDERSTAND";
+cout<<"\n  ITS CONTENT. I AM AWARE THAT THIS IS A RELEASE OF LIABILITY AND A";
+cout<<"\n  CONTRACT AND I AGREE TO IT OF MY OWN FREE WILL.";
+cout<<"\n\n\tAccept & Proceed?(Y/N):  ";
+*/
+ cout<<"\t%%      %%      ";
+       cout<<"\n\t%%      %% %%%%%%% %%      %%%%%%  %%%%%% %%%%  %%%% %%%%%%%";
+       cout<<"\n\t%%      %% %%      %%      %%      %%  %% %%  %%% %% %%       ";
+       cout<<"\n\t%%  %%  %% %%%%%   %%      %%      %%  %% %%  %%% %% %%%%%      ";
+       cout<<"\n\t%%  %%  %% %%      %%      %%      %%  %% %%      %% %%           ";
+       cout<<"\n\t%%%%%%%%%% %%%%%%% %%%%%%% %%%%%%% %%%%%% %%      %% %%%%%%%     ";
+       cout<<"\n\n\t\t\t        $$$$$$$$  $$$$$        ";
+       cout<<"\n\t\t\t           $$     $   $      ";
+       cout<<"\n\t\t\t           $$     $$$$$    ";
+
+
+
+
+	/* cleardevice();
+	 current_user.change_presence(0);
+	 fstream file;
+	  strcpy(filename,per_filepath);
+	  strcat(filename,"account.dat");
+	  file.open( filename, ios :: in |ios::out | ios ::binary );
+	  if(file)
+	   {
+	    file.read((char*)&person, sizeof(person)) ;
+	    while(!file.eof() )
+	    {if(person.return_userid()==current_user.return_userid())
+	     {  file.seekp(file.tellg()-sizeof(current_user));
+	       file.write((char*)&current_user,sizeof(current_user));
+	     }
+	    file.read((char*)&person, sizeof(person)) ;
+	    }
+	   }
+	   else
+	   {exit(0);}*/

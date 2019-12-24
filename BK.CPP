@@ -1,0 +1,33 @@
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+
+/*int main(void)
+{
+   int gdriver = VGA, gmode = VGAHI, errorcode;
+   struct palettetype pal;
+   int i, ht, y, xmax;
+
+   initgraph(&gdriver, &gmode, "c:\\tc\\bgi");
+
+   getpalette(&pal);
+
+   for (i=0; i<pal.size; i++)
+      setrgbpalette(pal.colors[i], i*4, i*4, i*4);
+
+   ht = getmaxy() / 16;
+   xmax = getmaxx();
+   y = 0;
+   for (i=0; i<pal.size; i++)
+   {
+      setfillstyle(SOLID_FILL, i);
+      bar(0, y, xmax, y+ht);
+      y += ht;
+   }
+
+   getch();
+   closegraph();
+   return 0;
+}*/
+

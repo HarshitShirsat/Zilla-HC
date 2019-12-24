@@ -1,0 +1,67 @@
+
+//allows the user to select one of the 9 available smileys as his profile picture.
+char profile_picture()
+{
+int which=0;
+int return_char;
+char filename[50][50]={"images\\smileys\\a",
+		       "images\\smileys\\b",
+		       "images\\smileys\\c",
+		       "images\\smileys\\d",
+		       "images\\smileys\\e",
+		       "images\\smileys\\f",
+		       "images\\smileys\\g",
+		       "images\\smileys\\h",
+		       "images\\smileys\\i"
+			};
+int flag=0;
+while(flag==0)
+ {
+
+
+ setcolor(WHITE);
+ settextstyle(0,0,4);
+ outtextxy(40,20,"PROFILE PICTURE");
+ settextstyle(2,0,6);
+ outtextxy(140,420,"A-LEFT    S-SELECT     D-RIGHT");
+ if(which>=0 && which<=9)
+ {
+ setfillstyle(SOLID_FILL,BLACK);
+ bar(100,100,500,400);
+  setcolor(RED);
+  //075left 077rgt
+  setlinestyle(0,0,3);
+  rectangle(100,100,500,400);
+  rectangle(105,105,495,395);
+  rectangle(105,400,495,450);
+  if(which>=0 && which<=8)
+  dis_img(filename[which],210,190);
+  else
+   {
+
+   setfillstyle(SOLID_FILL,WHITE);
+   setcolor(BLACK);
+   bar(210,190,350,330);
+   settextstyle(0,0,10);
+   outtextxy(250,220,"?");
+   }
+  char ch=getch();
+  if(which>0)
+   if(ch=='A' || ch=='a')
+    which--;
+  if(which<9)
+   if(ch=='d' || ch=='D')
+    which++;
+  if(ch=='s'||ch=='S')
+    {flag=1;
+     if(which>=0 && which<=8)
+      return filename[which][15];
+     else
+      return 'j';
+     }
+ }
+ else
+ {exit(0);}
+ }
+return 'j';
+}

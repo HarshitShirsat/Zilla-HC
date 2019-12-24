@@ -1,0 +1,169 @@
+//opens the license agreement and allows the user
+//to accept and proceed or quit.
+void open_lic()
+{
+clrscr();
+cleardevice();
+cout<<"\n\t\t\tLICENSE AGREEMENT";
+char filename[40];
+strcpy(filename,for_images_directory);
+strcat(filename,"lic.txt");
+fstream file;
+file.open(filename,ios::in | ios::binary);
+char ch;
+if(!file)
+  cout<<"file not found";
+else
+{ file.get(ch);
+while(!file.eof())
+ {
+  cout<<ch;
+  file.get(ch);
+  delay(4);
+ }
+}//else
+file.close();
+setcolor(7);  //light grey
+bar(20,400,30,410);
+outtextxy(40,400,"AGREE AND CONTINUE");
+
+setfillstyle(SOLID_FILL,8);
+bar(300,420,350,440);
+setcolor(BLACK);
+outtextxy(305,425,"NEXT");
+
+setfillstyle(SOLID_FILL,7);
+bar(400,420,450,440);
+setcolor(BLACK);
+outtextxy(405,425,"EXIT");
+initmouse();
+movemouseptr(0,0);
+showmouse();
+changecursor(cursorhc);
+
+  while( !kbhit() )
+{
+   getmousepos(&button, &x, &y );
+   if((x>=20 && x<=30 && y>=400 && y<=410)||(x>=400 && x<=450 && y>=420 && y<=440))
+      changecursor(cursorhand);
+   else
+     changecursor(cursorhc);
+   if(x>=20 && x<=30 && y>=400 && y<=410)
+   {
+     setfillstyle(SOLID_FILL,2);
+     bar(18,398,32,412);
+     setfillstyle(SOLID_FILL,7);
+     bar(20,400,30,410);
+
+
+   }
+   else
+   { setfillstyle(SOLID_FILL,0);
+     bar(18,398,32,412);
+     setfillstyle(SOLID_FILL,7);
+     bar(20,400,30,410);
+
+   }
+  if(x>=400 && x<=450 && y>=420 && y<=440)
+   { setcolor(RED);
+     outtextxy(405,425,"EXIT");
+
+
+   }
+  else
+  { setcolor(BLACK);
+     outtextxy(405,425,"EXIT");
+
+  }
+   showmouse();
+    if( button & 1 == 1 )
+	{
+	if(x>=20 && x<=30 && y>=400 && y<=410)
+	  { hidemouse();
+	    setfillstyle(SOLID_FILL,GREEN);
+	    pieslice(25,405,0,360,3);
+	    delay(2000);
+	    break;
+	  }
+	if(x>=400 && x<=450 && y>=420 && y<=440)
+	  {
+	  hidemouse();
+	  int flag=dia_box(1);
+	  if(flag==1)
+	    exit(0);
+	    else
+	     open_lic();}
+	}
+
+    }//while
+
+setfillstyle(SOLID_FILL,7);
+bar(300,420,350,440);
+setcolor(BLACK);
+outtextxy(305,425,"NEXT");
+movemouseptr(40,405);
+showmouse();
+  while( !kbhit() )
+{
+   getmousepos(&button, &x, &y );
+   if((x>=300 && x<=350 && y>=420 && y<=440)||(x>=400 && x<=450 && y>=420 && y<=440))
+	  changecursor(cursorhand);
+   else
+	 changecursor(cursorhc);
+   if(x>=300 && x<=350 && y>=420 && y<=440)
+   { setcolor(GREEN);
+     outtextxy(305,425,"NEXT");
+
+
+   }
+   else
+   { setcolor(BLACK);
+     outtextxy(305,425,"NEXT");
+
+
+
+   }
+   if(x>=400 && x<=450 && y>=420 && y<=440)
+   { setcolor(RED);
+     outtextxy(405,425,"EXIT");
+
+   }
+  else
+  { setcolor(BLACK);
+     outtextxy(405,425,"EXIT");
+
+  }
+   showmouse();
+    if( button & 1 == 1 )
+	{
+	if(x>=300 && x<=350 && y>=420 && y<=440)
+	  { hidemouse();
+	    setfillstyle(SOLID_FILL,GREEN);
+	    bar(297,417,353,443);
+	    setfillstyle(SOLID_FILL,8);
+	    bar(300,420,350,440);
+	    setcolor(BLACK);
+	    outtextxy(305,425,"NEXT");
+
+	    delay(2000);
+	    break;
+	  }
+	if(x>=400 && x<=450 && y>=420 && y<=440)
+	  {setfillstyle(SOLID_FILL,RED);
+	  bar(397,417,453,443);
+	  setfillstyle(SOLID_FILL,8);
+	  bar(400,420,450,440);
+	  setcolor(BLACK);
+	  outtextxy(405,425,"EXIT");
+	  delay(2000);
+	  hidemouse();
+	  int flag=dia_box(1);
+	  if(flag==1)
+	    exit(0);
+	    else
+	     open_lic();
+	  }
+	}
+
+}//2nd while
+}

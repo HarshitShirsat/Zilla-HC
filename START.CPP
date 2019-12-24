@@ -1,0 +1,166 @@
+//function to display the name of the project
+void start()
+{
+ cleardevice();
+ setlinestyle(SOLID_LINE,0,3);
+ setcolor(RED);
+ rectangle(10,10,630,470);
+/*int tempx,tempy,x=480,y=10;
+int size;
+//display of heading
+setcolor(WHITE);
+//C
+for(size=2;size<10;size++)
+    { tempx=x;
+    for (;x<tempx+1;x++)
+     { tempy=y;
+       for(;y<tempy+4;y++)
+       {settextstyle(0,0,size);
+       outtextxy(x,y,"C");
+       delay(20);
+       cleardevice();}
+     }
+    }
+//H
+x=420;y=10;
+
+ for(size=3;size<10;size++)
+    { tempx=x;
+    for (;x<tempx+1;x++)
+     { tempy=y;
+       for(;y<tempy+4;y++)
+       {settextstyle(0,0,9);
+       outtextxy(500,110,"C");
+       settextstyle(0,0,size);
+       outtextxy(x,y,"H");
+       delay(20);
+       cleardevice();}
+     }
+    }
+
+//A
+x=320;y=10;
+ for(size=3;size<10;size++)
+    {tempx=x;
+    for (;x<tempx+1;x++)
+     { tempy=y;
+       for(;y<tempy+4;y++)
+       {settextstyle(0,0,9);
+	outtextxy(500,110,"C");
+	outtextxy(440,110,"H");
+	settextstyle(0,0,size);
+       outtextxy(x,y,"A");
+       delay(20);
+       cleardevice();}
+     }
+    }
+
+//L
+
+x=260;y=10;
+for(size=3;size<10;size++)
+    { tempx=x;
+    for (;x<tempx+1;x++)
+     { tempy=y;
+       for(;y<tempy+4;y++)
+       {settextstyle(0,0,9);
+	outtextxy(500,110,"C");
+	outtextxy(440,110,"H");
+	outtextxy(340,110,"A");
+	settextstyle(0,0,size);
+       outtextxy(x,y,"L");
+       delay(5);
+       cleardevice();}
+     }
+    }
+
+//L
+x=200;y=10;
+
+ for(size=3;size<10;size++)
+    { tempx=x;
+    for (;x<tempx+1;x++)
+     { tempy=y;
+       for(;y<tempy+4;y++)
+       {settextstyle(0,0,9);
+	outtextxy(500,110,"C");
+	outtextxy(440,110,"H");
+	outtextxy(340,110,"A");
+	outtextxy(280,110,"L");
+	settextstyle(0,0,size);
+       outtextxy(x,y,"L");
+       delay(5);
+       cleardevice();}
+     }
+    }
+
+//I
+x=140;y=10;
+
+ for(size=3;size<10;size++)
+    { tempx=x;
+    for (;x<tempx+1;x++)
+     { tempy=y;
+       for(;y<tempy+4;y++)
+       {settextstyle(0,0,9);
+       outtextxy(500,110,"C");
+       outtextxy(440,110,"H");
+       outtextxy(340,110,"A");
+       outtextxy(280,110,"L");
+       outtextxy(220,110,"L");
+       settextstyle(0,0,size);
+       outtextxy(x,y,"I");
+       delay(5);
+       cleardevice();}
+     }
+    }
+
+//Z
+x=80;y=10;
+ for(size=3;size<10;size++)
+    { tempx=x;
+    for (;x<tempx+1;x++)
+     { tempy=y;
+       for(;y<tempy+4;y++)
+       {settextstyle(0,0,9);
+       outtextxy(500,110,"C");
+       outtextxy(440,110,"H");
+       outtextxy(340,110,"A");
+       outtextxy(280,110,"L");
+       outtextxy(220,110,"L");
+       outtextxy(160,110,"I");
+       settextstyle(0,0,size);
+       outtextxy(x,y,"Z");
+       delay(5);
+       cleardevice();}
+     }
+    }
+//final display
+       settextstyle(0,0,9);
+       outtextxy(500,110,"C");
+       outtextxy(440,110,"H");
+       outtextxy(340,110,"A");
+       outtextxy(280,110,"L");
+       outtextxy(220,110,"L");
+       outtextxy(160,110,"I");
+       outtextxy(80,110,"Z");
+  */
+//loading
+char imagename[50]={"images\\zilla"};
+dis_img(imagename,70,50);
+int maxx=getmaxx();
+int maxy=getmaxy();
+
+int k=150;
+setlinestyle(SOLID_LINE,1,1);
+setcolor(WHITE);
+settextstyle(0,0,1);
+outtextxy(275,440,"LOADING...");
+rectangle(150,maxy-31,maxx-149,maxy-24);
+for(int  l=151;l<=maxx-150;l++)
+{
+setfillstyle(SOLID_FILL,5);
+bar(k,getmaxy()-30,l,getmaxy()-25);
+delay(10);
+}
+}
